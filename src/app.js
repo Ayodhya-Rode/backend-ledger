@@ -1,13 +1,23 @@
 import express from "express";
-
-import authRouter from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser";
+
+/**
+ * - Routes required
+ */
+import authRouter from "./routes/auth.routes.js";
+import accountRouter from "./routes/account.routes.js"
 
 const app = express();
 app.use(express.json())
 app.use(cookieParser())
 
 
+/**
+ * - use Routes
+ */
 app.use("/api/auth",authRouter)
+app.use("/api/account", accountRouter)
+
+
 
 export default app;

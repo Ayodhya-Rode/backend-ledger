@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     match:[/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ , "Invalid email address"   ]
    } ,
    name:{
-     type : String,
+    type : String,
     required : [true, "Name is required for creating a account"],
    },
    password:{
@@ -39,7 +39,9 @@ userSchema.pre("save", async function () {
     return 
 })
 
-userSchema.methods.comparePassword = async function() {
+userSchema.methods.comparePassword = async function(password) {
+    console.log(password, this.password);
+    
     return await bcrypt.compare(password, this.password)    // checks hash & user input password is same or not
 }
 
